@@ -1,0 +1,13 @@
+# here we will be understanding expression context object 
+# now what it is context object -> its a object that gives you meta data about all the things happening in github 
+# now why it is needed -> working with env variables can require expression to call variables also context object is something used in industry to push data to db
+## to track data and every job 
+
+name: My context
+on: workflow_dispatch
+jobs:
+  context-info:
+    runs-on: ubuntu-latest
+    steps:
+     - name: printing github context object 
+       run: echo "${{ toJSON(github) }}" # now this how you can specify github that is this is object not a string 

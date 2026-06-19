@@ -1,5 +1,5 @@
 name: Test Workflow # name of workflow 
-on: push # trigger actions/events 
+on: [push,workflow_dispatch] # trigger actions/events -> can run as many as you want 
 jobs:
   tester:
     runs-on: ubuntu-latest # spin up ubuntu container in a axure server 
