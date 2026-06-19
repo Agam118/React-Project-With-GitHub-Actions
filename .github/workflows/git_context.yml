@@ -5,7 +5,6 @@
 
 name: My context
 on: issues # tells to run this manually when some one runs it on github 
-types: [opened, edited]
 jobs:
   context-info:
     runs-on: ubuntu-latest
