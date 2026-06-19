@@ -4,14 +4,14 @@ jobs:
   tester:
     runs-on: ubuntu-latest # spin up ubuntu container in a axure server 
     steps:
-      -name: Pushing Code to Container 
-      uses: actions/checkout@v7 # actions are 3rd party tools / application developed by devdelopers use to perform repeated tasks 
-      -name: Installing NodeJS 
-      uses: actions/setup-node@v6 
-      with: 
-        node-version: 25 # to add up configuration with actions 
-      -name: Installing Dependencies 
-      run: npm install 
-      -name: Run Unit Tests 
-      run: npm run test
+      - name: Pushing Code to Container 
+        uses: actions/checkout@v7 # actions are 3rd party tools / application developed by devdelopers use to perform repeated tasks 
+      - name: Installing NodeJS 
+        uses: actions/setup-node@v6 
+        with: 
+          node-version: 25 # to add up configuration with actions 
+      - name: Installing Dependencies 
+        run: npm install 
+      - name: Run Unit Tests 
+        run: npm run test
     
