@@ -15,6 +15,7 @@ jobs:
       - name: Run Unit Tests 
         run: npm run test
   deployer:
+     needs: tester
      runs-on: ubuntu-latest # spin up ubuntu container in a axure server 
      steps:
       - name: Pushing Code to Container 
