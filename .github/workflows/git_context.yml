@@ -4,10 +4,15 @@
 ## to track data and every job 
 
 name: My context
-on: workflow_dispatch
+on: issues # tells to run this manually when some one runs it on github 
+types: [opened, edited]
 jobs:
   context-info:
     runs-on: ubuntu-latest
     steps:
-     - name: printing github context object 
-       run: echo "${{ toJSON(github) }}" # now this how you can specify github that is this is object not a string 
+      - name: Get issue events
+        run: |
+         curl -s \
+           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+           -H "Accept: application/vnd.github+json" \
+           "${{ github.event.issue.events_url }}" | jq .
