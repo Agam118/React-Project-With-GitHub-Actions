@@ -39,6 +39,12 @@ jobs:
       needs: builder
       runs-on: ubuntu-latest
       steps:
+        - name: Download artifacts 
+          uses: actions/download-artifact@v8
+          with:
+            name: artifacts-list # there could be many artifacts 
+        - name: Show Path # just to make sure all artifacts should be at exact loactions
+          run: ls 
         - name: Deploying your code
           run: echo we are deploying it
     
