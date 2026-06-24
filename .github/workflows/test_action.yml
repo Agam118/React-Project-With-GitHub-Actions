@@ -17,6 +17,8 @@ jobs:
   builder:
      needs: tester
      runs-on: ubuntu-latest # spin up ubuntu container in a axure server 
+     outputs:
+        output-value: ${{ steps.refer-id.output.key }} # this will refernce to value generated in that step 
      steps:
       - name: Pushing Code to Container 
         uses: actions/checkout@v7 # actions are 3rd party tools / application developed by devdelopers use to perform repeated tasks 
@@ -29,12 +31,16 @@ jobs:
       - name: Building your code 
         run: npm run build 
       - name: upload build project
-        uses: actions/upload-artifact@v7 # uploadind data generated after the job artifact/asset 
+        uses: actions/upload-artifact@v7 # uploadind data files generated after the job artifact/asset 
         with:
           name: artifacts-list
           path: |
             dist 
             package.json 
+      - name: uploading value to output 
+        id: refer-id # this id will be unique to step and will be use for refer my output 
+        run: echo 'key=hello_world' >> $GITHUB_OUTPUT  # now i have uploaded a key value to a pointer pointing to internal github files consist key value  
+      # run: echo ::set-output name=key::value        # now this is another way writng it to a $GITHUB_OUTPUT  pointer 
   deployer:
       needs: builder
       runs-on: ubuntu-latest
@@ -45,6 +51,9 @@ jobs:
             name: artifacts-list # there could be many artifacts 
         - name: Show Path # just to make sure all artifacts should be at exact loactions
           run: ls 
+        - name: Show output
+          run: echo ${{ needs.builder.outputs.output-value}} # taking output in another job 
         - name: Deploying your code
           run: echo we are deploying it
+
     
