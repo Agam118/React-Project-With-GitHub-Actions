@@ -18,7 +18,7 @@ jobs:
      needs: tester
      runs-on: ubuntu-latest # spin up ubuntu container in a axure server 
      outputs:
-        output-value: ${{ steps.refer-id.output.key }} # this will refernce to value generated in that step 
+        output-value: ${{ steps.refer-id.outputs.key }} # this will refernce to value generated in that step 
      steps:
       - name: Pushing Code to Container 
         uses: actions/checkout@v7 # actions are 3rd party tools / application developed by devdelopers use to perform repeated tasks 
